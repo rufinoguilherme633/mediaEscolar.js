@@ -53,15 +53,28 @@ entradaDados.question('Digite nome do aluno\n', function (nome) {
                                             console.log('sua media é : ' + media)
                                             if (media >= 70) {
                                                 console.log('Status aprovado');
+
+                                                // console.log('---------------- RELATORIO DO ALUNO ---------------------------');
+                                        console.log(sexoAluno + ":" + nomeAluno);
+                                        console.log('Curso' + nomeCurso);
+                                        console.log(sexoProfessor + ':' + nomeProfessor);
+                                        // console.log('Media final ' + media);
+                                       // console.log('media da recuperação: ' + mediaRecuperacao);
+                                        console.log('media' + media)
+
                                             } else if (media < 50) {
                                                 console.log('Status Reprovado seu burro');
 
                                             } else if (media >= 50 || media <= 60) {
                                                 console.log('esta de recuperacao');
+
+                                                
                                                 entradaDados.question('qual o a nota da recuperação? \n', function (recuperacao) {
                                                     notaRecuperacao = recuperacao;
 
-                                                   var mediaRecuperacao = (Number(notaRecuperacao) + Number(media)) / 2;
+
+
+                                                    var mediaRecuperacao = (Number(notaRecuperacao) + Number(media)) / 2;
                                                     console.log(mediaRecuperacao);
                                                     if (mediaRecuperacao >= 60) {
                                                         console.log('aprovado na recuperação')
@@ -69,22 +82,18 @@ entradaDados.question('Digite nome do aluno\n', function (nome) {
                                                         console.log('reprovado na recuperação')
                                                     }
 
-
-
-
-                                                });
-                                            }
-
-                                        }
-                                        // console.log('---------------- RELATORIO DO ALUNO ---------------------------');
+                                                      // console.log('---------------- RELATORIO DO ALUNO ---------------------------');
                                         console.log(sexoAluno + ":" + nomeAluno);
                                         console.log('Curso' + nomeCurso);
                                         console.log(sexoProfessor + ':' + nomeProfessor);
                                         // console.log('Media final ' + media);
-                                        console.log('media da recuperação: ' + mediaRecuperacao);
+                                       console.log('media da recuperação: ' + mediaRecuperacao);
                                         console.log('media' + media)
 
 
+                                                });
+                                            }
+                                        }
                                     });
                                 });
                             });
