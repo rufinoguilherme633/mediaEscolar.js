@@ -7,38 +7,43 @@ var entradaDados = readline.createInterface({
 let media = 0
 let mediaRecuperacao = 0;
 
-entradaDados.question('Digite nome do aluno\n', function (nome) {
+entradaDados.question('Digite nome do aluno\n', function(nome) {
     let nomeAluno = nome;
-    entradaDados.question('Digite nomee do professor(a)\n', function (professor) {
+    entradaDados.question('Digite nomee do professor(a)\n', function(professor) {
         let nomeProfessor = professor;
-        entradaDados.question("Digite sexo do aluno(a) \n", function (sexoA) {
+        entradaDados.question("Digite sexo do aluno(a) \n OBS use M ou F", function(sexoA) {
 
             let sexoAluno = sexoA;
             if (sexoAluno === "M") {
                 sexoAluno = "Aluno"
-            } else {
+            } else if (sexoAluno === 'F') {
                 sexoAluno = "Aluna"
+            } else {
+                console.log("O sistema só aceita 'M' ou 'F'")
+
             }
 
-            entradaDados.question('Digite sexo do professor(a)\n', function (sexoP) {
+            entradaDados.question('Digite sexo do professor(a)\n OBS use M ou F', function(sexoP) {
                 let sexoProfessor = sexoP;
 
                 if (sexoProfessor === "M") {
                     sexoProfessor = "Professor"
-                } else {
+                } else if (sexoProfessor === "F") {
                     sexoProfessor = "Professora"
+                } else {
+                    console.log("O sistema só aceita 'M' ou 'F'")
                 }
-                entradaDados.question('Digite nome do curso \n', function (curso) {
+                entradaDados.question('Digite nome do curso \n', function(curso) {
                     let nomeCurso = curso;
-                    entradaDados.question('Digite a disciplina\n', function (disciplina) {
+                    entradaDados.question('Digite a disciplina\n', function(disciplina) {
                         let nomeDisciplina = disciplina;
-                        entradaDados.question('digite 1° nota \n', function (nota1) {
+                        entradaDados.question('digite 1° nota \n', function(nota1) {
                             let primeiraNota = nota1;
-                            entradaDados.question('Digite 2° nota \n', function (nota2) {
+                            entradaDados.question('Digite 2° nota \n', function(nota2) {
                                 let segundaNota = nota2;
-                                entradaDados.question('Digite 3° nota \n', function (nota3) {
+                                entradaDados.question('Digite 3° nota \n', function(nota3) {
                                     let terceiraNota = nota3;
-                                    entradaDados.question('Digite 4° nota\n', function (nota4) {
+                                    entradaDados.question('Digite 4° nota\n', function(nota4) {
                                         let quartaNota = nota4;
 
                                         if (nomeAluno == '' || nomeProfessor == '' || sexoAluno == '' || sexoProfessor == '' || nomeCurso == '' || nomeDisciplina == '' || primeiraNota == '' || segundaNota == '' || terceiraNota == '' || quartaNota == '') {
@@ -52,24 +57,30 @@ entradaDados.question('Digite nome do aluno\n', function (nome) {
                                             var media = (Number(primeiraNota) + Number(segundaNota) + Number(terceiraNota) + Number(quartaNota)) / 4;
                                             console.log('sua media é : ' + media)
                                             if (media >= 70) {
-                                                console.log('Status aprovado');
 
-                                                // console.log('---------------- RELATORIO DO ALUNO ---------------------------');
-                                        console.log(sexoAluno + ":" + nomeAluno);
-                                        console.log('Curso' + nomeCurso);
-                                        console.log(sexoProfessor + ':' + nomeProfessor);
-                                        // console.log('Media final ' + media);
-                                       // console.log('media da recuperação: ' + mediaRecuperacao);
-                                        console.log('media' + media)
+
+                                                console.log('---------------- RELATORIO DO ALUNO ---------------------------');
+                                                console.log('Status aprovado');
+                                                console.log(sexoAluno + ":" + nomeAluno);
+                                                console.log('Curso: ' + nomeCurso);
+                                                console.log(sexoProfessor + ': ' + nomeProfessor);
+                                                console.log('media: ' + media)
 
                                             } else if (media < 50) {
-                                                console.log('Status Reprovado seu burro');
+
+
+                                                console.log('---------------- RELATORIO DO ALUNO ---------------------------');
+                                                console.log('Status Reprovado');
+                                                console.log(sexoAluno + ":" + nomeAluno);
+                                                console.log('Curso: ' + nomeCurso);
+                                                console.log(sexoProfessor + ': ' + nomeProfessor);
+                                                console.log('media: ' + media)
 
                                             } else if (media >= 50 || media <= 60) {
                                                 console.log('esta de recuperacao');
 
-                                                
-                                                entradaDados.question('qual o a nota da recuperação? \n', function (recuperacao) {
+
+                                                entradaDados.question('qual o a nota da recuperação? \n', function(recuperacao) {
                                                     notaRecuperacao = recuperacao;
 
 
@@ -79,16 +90,18 @@ entradaDados.question('Digite nome do aluno\n', function (nome) {
                                                     if (mediaRecuperacao >= 60) {
                                                         console.log('aprovado na recuperação')
                                                     } else {
-                                                        console.log('reprovado na recuperação')
-                                                    }
 
-                                                      // console.log('---------------- RELATORIO DO ALUNO ---------------------------');
-                                        console.log(sexoAluno + ":" + nomeAluno);
-                                        console.log('Curso' + nomeCurso);
-                                        console.log(sexoProfessor + ':' + nomeProfessor);
-                                        // console.log('Media final ' + media);
-                                       console.log('media da recuperação: ' + mediaRecuperacao);
-                                        console.log('media' + media)
+
+
+                                                        console.log('---------------- RELATORIO DO ALUNO ---------------------------');
+                                                        console.log('reprovado na recuperação')
+                                                        console.log(sexoAluno + ":" + nomeAluno);
+                                                        console.log('Curso' + nomeCurso);
+                                                        console.log(sexoProfessor + ': ' + nomeProfessor);
+                                                        // console.log('Media final ' + media);
+                                                        console.log('media da recuperação: ' + mediaRecuperacao);
+                                                        console.log('media: ' + media)
+                                                    }
 
 
                                                 });
