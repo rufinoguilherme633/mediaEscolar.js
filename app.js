@@ -1,3 +1,4 @@
+var linkandoModulo = require('./modulo/meida.js')
 var readline = require('readline');
 var entradaDados = readline.createInterface({
     input: process.stdin,
@@ -23,7 +24,7 @@ entradaDados.question('Digite nome do aluno\n', function(nome) {
 
             }
 
-            entradaDados.question('Digite sexo do professor(a)\n OBS use M ou F', function(sexoP) {
+            entradaDados.question('Digite sexo do professor(a)\n OBS use M ou F \n', function(sexoP) {
                 let sexoProfessor = sexoP;
 
                 if (sexoProfessor === "M") {
@@ -48,59 +49,34 @@ entradaDados.question('Digite nome do aluno\n', function(nome) {
 
                                         if (nomeAluno == '' || nomeProfessor == '' || sexoAluno == '' || sexoProfessor == '' || nomeCurso == '' || nomeDisciplina == '' || primeiraNota == '' || segundaNota == '' || terceiraNota == '' || quartaNota == '') {
                                             console.log('ERRo: Não é possivel calcular sem preencher todos osd dados');
+                                            process.exit()
                                         } else if (isNaN(primeiraNota) || isNaN(segundaNota) || isNaN(terceiraNota) || isNaN(quartaNota)) {
                                             console.log('Erro:é necessario que todas as notas seja um numero,')
+                                            process.exit()
                                         } else if (primeiraNota < 0 || primeiraNota > 100 || segundaNota < 0 || segundaNota > 100 || terceiraNota < 0 || terceiraNota > 100 || quartaNota < 0 || quartaNota > 100) {
                                             console.log('ERRO: o sistema só aceita  números entre 0 e 100 ');
+                                            process.exit()
 
                                         } else {
-                                            var media = (Number(primeiraNota) + Number(segundaNota) + Number(terceiraNota) + Number(quartaNota)) / 4;
+
+                                            media = linkandoModulo.calculoMedia(primeiraNota, segundaNota, terceiraNota, quartaNota)
                                             console.log('sua media é : ' + media)
                                             if (media >= 70) {
-
-
-                                                console.log('---------------- RELATORIO DO ALUNO ---------------------------');
-                                                console.log('Status aprovado');
-                                                console.log(sexoAluno + ":" + nomeAluno);
-                                                console.log('Curso: ' + nomeCurso);
-                                                console.log(sexoProfessor + ': ' + nomeProfessor);
-                                                console.log('media: ' + media)
-
+                                                linkandoModulo.relatorioAluno(sexoAluno, nomeAluno, nomeCurso, sexoProfessor, nomeProfessor, media)
                                             } else if (media < 50) {
-
-
-                                                console.log('---------------- RELATORIO DO ALUNO ---------------------------');
-                                                console.log('Status Reprovado');
-                                                console.log(sexoAluno + ":" + nomeAluno);
-                                                console.log('Curso: ' + nomeCurso);
-                                                console.log(sexoProfessor + ': ' + nomeProfessor);
-                                                console.log('media: ' + media)
-
+                                                linkandoModulo.relatorioAlunoReprovado(sexoAluno, nomeAluno, nomeCurso, sexoProfessor, nomeProfessor, media)
                                             } else if (media >= 50 || media <= 60) {
                                                 console.log('esta de recuperacao');
-
-
                                                 entradaDados.question('qual o a nota da recuperação? \n', function(recuperacao) {
                                                     notaRecuperacao = recuperacao;
-
-
 
                                                     var mediaRecuperacao = (Number(notaRecuperacao) + Number(media)) / 2;
                                                     console.log(mediaRecuperacao);
                                                     if (mediaRecuperacao >= 60) {
                                                         console.log('aprovado na recuperação')
                                                     } else {
+                                                        linkandoModulo.relatorioAlunoReprovado(sexoAluno, nomeAluno, nomeCurso, sexoProfessor, nomeProfessor, media)
 
-
-
-                                                        console.log('---------------- RELATORIO DO ALUNO ---------------------------');
-                                                        console.log('reprovado na recuperação')
-                                                        console.log(sexoAluno + ":" + nomeAluno);
-                                                        console.log('Curso' + nomeCurso);
-                                                        console.log(sexoProfessor + ': ' + nomeProfessor);
-                                                        // console.log('Media final ' + media);
-                                                        console.log('media da recuperação: ' + mediaRecuperacao);
-                                                        console.log('media: ' + media)
                                                     }
 
 
